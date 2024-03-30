@@ -6,23 +6,54 @@
         xmlns:local="clr-namespace:Vitalize_Vault.View"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
-        Title="Product Management" Height="300" Width="400">
+        Title="Product Management" Height="180" Width="400">
     <Grid>
-        <!-- Product Name Label and Text Box -->
-        <Label Content="Product Name:" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
-        <ui:TextBox x:Name="txtProductName" HorizontalAlignment="Left" Margin="120,20,0,0" VerticalAlignment="Top" Width="200"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid Margin="10,0,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-        <!-- Expiration Date Label and Date Picker -->
-        <Label Content="Expiration Date:" HorizontalAlignment="Left" Margin="20,60,0,0" VerticalAlignment="Top"/>
-        <ui:CalendarDatePicker x:Name="dpExpirationDate" HorizontalAlignment="Left" Margin="120,60,0,0" VerticalAlignment="Top" Width="200"/>
+            <Label VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal" >
+                    <TextBlock Text="&#x1F4C1; " />
+                    <TextBlock Text="Product Name:"/>
+                </StackPanel>
+            </Label>
 
-        <!-- Add Button -->
-        <ui:Button Content="Add Product" HorizontalAlignment="Left" Margin="20,100,0,0" VerticalAlignment="Top" Width="100" Click="AddProduct_Click"/>
+            <ui:TextBox Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
 
-        <!-- Edit Button -->
-        <ui:Button Content="Edit Product" HorizontalAlignment="Left" Margin="140,100,0,0" VerticalAlignment="Top" Width="100" Click="EditProduct_Click"/>
+            <!-- Expiration Date Label and Date Picker -->
+            <Label Grid.Row="1" VerticalAlignment="Center">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="&#x1F4C5; "/>
+                    <TextBlock Text="Expiration Date:"/>
+                </StackPanel>
+            </Label>
 
-        <!-- Delete Button -->
-        <ui:Button Content="Delete Product" HorizontalAlignment="Left" Margin="260,100,0,0" VerticalAlignment="Top" Width="100" Click="DeleteProduct_Click"/>
+            <ui:CalendarDatePicker Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" Width="Auto"/>
+
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <!-- Add Button -->
+            <ui:Button Content="Add Product" Margin="5"/>
+
+            <!-- Edit Button -->
+            <ui:Button Content="Edit Product" Margin="5"/>
+
+            <!-- Delete Button -->
+            <ui:Button Content="Delete Product" Margin="5"/>
+        </StackPanel>
+
     </Grid>
+
 </Window>
