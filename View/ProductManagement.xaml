@@ -50,15 +50,9 @@
             <!-- You may need to set ItemTemplate to customize how products are displayed -->
         </ui:ListView>
 
-        <!-- Button Panel -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <!-- Button to Add Product -->
             <ui:Button Content="Add Product" Margin="5"/>
-
-            <!-- Button to Edit Product -->
             <ui:Button Content="Edit Product" Margin="5"/>
-
-            <!-- Button to Delete Product -->
             <ui:Button Content="Delete Product" Margin="5"/>
         </StackPanel>
     </Grid>
