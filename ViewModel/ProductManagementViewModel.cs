@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
+using Vitalize_Vault.Command;
 using Vitalize_Vault.Data;
 
 namespace Vitalize_Vault.ViewModel
@@ -29,7 +30,8 @@ namespace Vitalize_Vault.ViewModel
         public ProductManagementViewModel(IProductDataProvider dataProvider)
         {
             _dataProvider = dataProvider;
-        }
+            AddCommand = new DelegateCommand(Add);
+        }        
 
         public async override Task LoadAsync()
         {
@@ -47,5 +49,13 @@ namespace Vitalize_Vault.ViewModel
                 }
             }            
         }
+
+        public void Add(object? obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        public DelegateCommand AddCommand { get; }
+        public DelegateCommand EditCommand { get; }
     }
 }

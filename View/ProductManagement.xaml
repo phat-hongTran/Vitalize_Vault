@@ -52,7 +52,7 @@
             <ui:CalendarDatePicker Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" Width="Auto"/>
         </Grid>
 
-        <ui:ListView Grid.Row="1" Name="ProductListBox" Margin="10"
+        <ui:ListView Grid.Row="1" Margin="10"
                      ItemsSource="{Binding Products}"
                      SelectedItem="{Binding SelectedProduct}"
                      ItemTemplate="{StaticResource ProductDataTemplate}">
@@ -60,7 +60,6 @@
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
             <ui:Button Content="Add Product" Margin="5"/>
-            <ui:Button Content="Edit Product" Margin="5"/>
             <ui:Button Content="Delete Product" Margin="5"/>
         </StackPanel>
     </Grid>
