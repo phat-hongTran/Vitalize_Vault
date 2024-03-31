@@ -44,7 +44,9 @@
         </Grid>
 
         <!-- Product List -->
-        <ui:ListView Grid.Row="1" Name="ProductListBox" Margin="10">
+        <ui:ListView Grid.Row="1" Name="ProductListBox" Margin="10"
+                     ItemsSource="{Binding Products}"
+                     SelectedItem="{Binding SelectedProduct}">
             <!-- Bind ListBox to list of products -->
             <!-- Each ListBoxItem should display product details -->
             <!-- You may need to set ItemTemplate to customize how products are displayed -->
