@@ -45,13 +45,13 @@
 
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10,0,10,0">
             <!-- Add Button -->
-            <ui:Button Content="Add Product"/>
+            <ui:Button Content="Add Product" Margin="5,5"/>
 
             <!-- Edit Button -->
-            <ui:Button Content="Edit Product"/>
+            <ui:Button Content="Edit Product" Margin="5,5"/>
 
             <!-- Delete Button -->
-            <ui:Button Content="Delete Product"/>
+            <ui:Button Content="Delete Product" Margin="5,5"/>
         </StackPanel>
 
     </Grid>
