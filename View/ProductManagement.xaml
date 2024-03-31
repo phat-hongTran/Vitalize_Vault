@@ -35,7 +35,6 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <!-- Product Name Label and TextBox -->
             <Label VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#x1F4C1; "/>
@@ -44,7 +43,6 @@
             </Label>
             <ui:TextBox Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
 
-            <!-- Expiration Date Label and DatePicker -->
             <Label Grid.Row="1" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="&#x1F4C5; "/>
@@ -54,14 +52,10 @@
             <ui:CalendarDatePicker Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" Width="Auto"/>
         </Grid>
 
-        <!-- Product List -->
         <ui:ListView Grid.Row="1" Name="ProductListBox" Margin="10"
                      ItemsSource="{Binding Products}"
                      SelectedItem="{Binding SelectedProduct}"
                      ItemTemplate="{StaticResource ProductDataTemplate}">
-            <!-- Bind ListBox to list of products -->
-            <!-- Each ListBoxItem should display product details -->
-            <!-- You may need to set ItemTemplate to customize how products are displayed -->
         </ui:ListView>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
