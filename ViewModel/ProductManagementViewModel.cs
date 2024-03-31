@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Navigation;
 using Vitalize_Vault.Command;
 using Vitalize_Vault.Data;
+using Vitalize_Vault.Model;
 
 namespace Vitalize_Vault.ViewModel
 {
@@ -54,14 +55,20 @@ namespace Vitalize_Vault.ViewModel
 
         private void Add(object? obj)
         {
-            throw new NotImplementedException();
+            var product = new Product() { Name = "New" };
+            var productItem = new ProductItemViewModel(product);
+            Products.Add(productItem);
         }
 
         private bool CanDelete(object? arg) => SelectedProduct != null ? true : false;
 
         private void Delete(object? obj)
         {
-            throw new NotImplementedException();
+            if (SelectedProduct != null)
+            {
+                Products.Remove(SelectedProduct);
+                SelectedProduct = null;
+            }
         }
 
         public DelegateCommand AddCommand { get; }
