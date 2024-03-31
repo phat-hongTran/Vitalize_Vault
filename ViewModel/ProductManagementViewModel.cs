@@ -17,21 +17,23 @@ namespace Vitalize_Vault.ViewModel
 
         public ObservableCollection<ProductItemViewModel> Products { get; } = new();
 
-		public ProductItemViewModel? SelectedProduct
+        public ProductItemViewModel? SelectedProduct
         {
-			get { return _selectedProduct; }
-			set 
-			{
+            get { return _selectedProduct; }
+            set
+            {
                 _selectedProduct = value;
-				RaisePropertyChanged();
-			}
-		}
+                RaisePropertyChanged();
+                DeleteCommand.RaiseCanExecuteChanged();
+            }
+        }
 
         public ProductManagementViewModel(IProductDataProvider dataProvider)
         {
             _dataProvider = dataProvider;
             AddCommand = new DelegateCommand(Add);
-        }        
+            DeleteCommand = new DelegateCommand(Delete, CanDelete);
+        }
 
         public async override Task LoadAsync()
         {
@@ -47,15 +49,22 @@ namespace Vitalize_Vault.ViewModel
                 {
                     Products.Add(new ProductItemViewModel(product));
                 }
-            }            
+            }
         }
 
-        public void Add(object? obj)
+        private void Add(object? obj)
+        {
+            throw new NotImplementedException();
+        }
+
+        private bool CanDelete(object? arg) => SelectedProduct != null ? true : false;
+
+        private void Delete(object? obj)
         {
             throw new NotImplementedException();
         }
 
         public DelegateCommand AddCommand { get; }
-        public DelegateCommand EditCommand { get; }
+        public DelegateCommand DeleteCommand { get; }
     }
 }

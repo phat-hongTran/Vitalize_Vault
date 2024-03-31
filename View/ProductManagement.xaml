@@ -59,8 +59,8 @@
         </ui:ListView>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <ui:Button Content="Add Product" Margin="5"/>
-            <ui:Button Content="Delete Product" Margin="5"/>
+            <ui:Button Content="Add Product" Margin="5" Command="{Binding AddCommand}"/>
+            <ui:Button Content="Delete Product" Margin="5" Command="{Binding DeleteCommand}"/>
         </StackPanel>
     </Grid>
 

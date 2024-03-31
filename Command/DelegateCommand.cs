@@ -22,5 +22,7 @@ namespace Vitalize_Vault.Command
             _execute = execute;
             _canExecute = canExecute;
         }
+
+        public void RaiseCanExecuteChanged() => CanExecuteChanged?.Invoke(this, EventArgs.Empty);
     }
 }
