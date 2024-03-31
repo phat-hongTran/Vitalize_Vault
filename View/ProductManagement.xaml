@@ -6,13 +6,16 @@
         xmlns:local="clr-namespace:Vitalize_Vault.View"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
-        Title="Product Management" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="Product Management" 
+        MinHeight="200" MinWidth="400" SizeToContent="WidthAndHeight" 
+        MaxHeight="450" MaxWidth="600"
+        Loaded="Window_Loaded">
 
     <Window.Resources>
         <DataTemplate x:Key="ProductDataTemplate">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
-                <TextBlock Text="{Binding ExpirationDate}" Margin="5 0 0 0"/>
+                <TextBlock Text="{Binding ExpirationDate, StringFormat=dd-MM-yyyy}" Margin="5 0 0 0"/>
             </StackPanel>
         </DataTemplate>
     </Window.Resources>
