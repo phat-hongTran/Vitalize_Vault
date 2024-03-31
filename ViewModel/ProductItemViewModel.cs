@@ -23,7 +23,7 @@ namespace Vitalize_Vault.ViewModel
             }
         }
 
-        public DateTime? ExprirationDate
+        public DateTime? ExpirationDate
         {
             get => _product.ExpirationDate;
             set
