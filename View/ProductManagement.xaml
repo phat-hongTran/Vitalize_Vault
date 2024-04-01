@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:Vitalize_Vault.View"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
         mc:Ignorable="d"
-        Title="FridgePal" 
         MinHeight="200" MinWidth="400" SizeToContent="WidthAndHeight" 
         MaxHeight="450" MaxWidth="600"
+        WindowStartupLocation="CenterScreen"
+        Title="FrigdePal"
         Loaded="Window_Loaded">
 
     <Window.Resources>
@@ -25,6 +26,7 @@
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        
         <Grid Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -51,6 +53,7 @@
                 </StackPanel>
             </Label>
             <ui:CalendarDatePicker Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" Width="Auto"
+                                   IsTodayHighlighted="True"
                                    Date="{Binding SelectedProduct.ExpirationDate, Mode=TwoWay}"/>
         </Grid>
 
@@ -61,9 +64,9 @@
         </ui:ListView>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <ui:Button Content="Add Product" Margin="5" Command="{Binding AddCommand}"/>
-            <ui:Button Content="Edit Product" Margin="5" Command="{Binding EditCommand}"/>
-            <ui:Button Content="Delete Product" Margin="5" Command="{Binding DeleteCommand}"/>
+            <ui:Button Content="Add Product" Margin="5" Command="{Binding AddCommand}" Appearance="Primary" Icon="{ui:SymbolIcon Add24}"/>
+            <ui:Button Content="Edit Product" Margin="5" Command="{Binding EditCommand}" Appearance="Primary" Icon="{ui:SymbolIcon Edit24}"/>
+            <ui:Button Content="Delete Product" Margin="5" Command="{Binding DeleteCommand}" Appearance="Primary" Icon="{ui:SymbolIcon Delete24}"/>
         </StackPanel>
     </Grid>
 
