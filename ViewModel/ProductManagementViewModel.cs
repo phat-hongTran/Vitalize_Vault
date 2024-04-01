@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Navigation;
 using Vitalize_Vault.Command;
 using Vitalize_Vault.Data;
@@ -62,12 +64,26 @@ namespace Vitalize_Vault.ViewModel
 
         private bool CanDelete(object? arg) => SelectedProduct != null ? true : false;
 
-        private void Delete(object? obj)
+        private async void Delete(object? obj)
         {
             if (SelectedProduct != null)
             {
-                Products.Remove(SelectedProduct);
-                SelectedProduct = null;
+                try
+                {
+                    var deleted = await _dataProvider.DeleteAsync(SelectedProduct.Id);
+                    
+                    Products.Remove(SelectedProduct);
+                    SelectedProduct = null;
+
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show("Failed to delete the product: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                } 
             }
         }
 
