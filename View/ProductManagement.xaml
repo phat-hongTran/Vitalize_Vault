@@ -39,8 +39,8 @@
 
             <Label VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="&#x1F4C1; "/>
-                    <TextBlock Text="Product Name:"/>
+                    <ui:SymbolIcon Symbol="Folder24"/>
+                    <ui:TextBlock Text="Product Name:" FontTypography="BodyStrong" Margin="5 0 0 0"/>
                 </StackPanel>
             </Label>
             <ui:TextBox Grid.Column="1" Margin="5" VerticalAlignment="Center"
@@ -48,8 +48,8 @@
 
             <Label Grid.Row="1" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="&#x1F4C5; "/>
-                    <TextBlock Text="Expiration Date:"/>
+                    <ui:SymbolIcon Symbol="CalendarLtr24"/>
+                    <ui:TextBlock Text="Expiration Date:" FontTypography="BodyStrong" Margin="5 0 0 0"/>
                 </StackPanel>
             </Label>
             <ui:CalendarDatePicker Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" Width="Auto"
