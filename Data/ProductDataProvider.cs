@@ -13,6 +13,7 @@ namespace Vitalize_Vault.Data
         Task<IEnumerable<Product>> GetAllAsync();
         Task<bool> DeleteAsync(int id);
         Task<bool> AddAsync(Product product);
+        Task<bool> UpdateAsync(Product product);
     }
     public class ProductDataProvider : IProductDataProvider
     {
@@ -39,12 +40,29 @@ namespace Vitalize_Vault.Data
         {
             using var db = new ProductDbContext();
 
-            var product = await db.Products.FirstOrDefaultAsync(p => p.Id == id);
+            var product = await db.Products.FirstAsync(p => p.Id == id);
 
             if (product != null) 
             {
                 db.Products.Remove(product);
                 int rowsAffected = await  db.SaveChangesAsync();
+                return rowsAffected > 0;
+            }
+
+            return false;
+        }
+
+        public async Task<bool> UpdateAsync(Product editedProduct)
+        {
+            using var db = new ProductDbContext();
+
+            var product = await db.Products.FirstAsync(p => p.Id == editedProduct.Id);
+
+            if (product != null)
+            {
+                product.Name = editedProduct.Name;
+                product.ExpirationDate = editedProduct.ExpirationDate;
+                int rowsAffected = await db.SaveChangesAsync();
                 return rowsAffected > 0;
             }
 

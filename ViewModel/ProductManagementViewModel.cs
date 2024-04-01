@@ -28,6 +28,7 @@ namespace Vitalize_Vault.ViewModel
                 _selectedProduct = value;
                 RaisePropertyChanged();
                 DeleteCommand.RaiseCanExecuteChanged();
+                EditCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -35,7 +36,8 @@ namespace Vitalize_Vault.ViewModel
         {
             _dataProvider = dataProvider;
             AddCommand = new DelegateCommand(Add);
-            DeleteCommand = new DelegateCommand(Delete, CanDelete);
+            DeleteCommand = new DelegateCommand(Delete, ProductSelected);
+            EditCommand = new DelegateCommand(Edit, ProductSelected);
         }
 
         public async override Task LoadAsync()
@@ -76,7 +78,7 @@ namespace Vitalize_Vault.ViewModel
             }
         }
 
-        private bool CanDelete(object? arg) => SelectedProduct != null ? true : false;
+        private bool ProductSelected(object? arg) => SelectedProduct != null ? true : false;
 
         private async void Delete(object? obj)
         {
@@ -101,7 +103,30 @@ namespace Vitalize_Vault.ViewModel
             }
         }
 
+        private async void Edit(object? obj)
+        {
+            if (SelectedProduct != null)
+            {
+                try
+                {
+                    await _dataProvider.UpdateAsync(new Product() { 
+                        Id = SelectedProduct.Id,
+                        Name = SelectedProduct.Name, 
+                        ExpirationDate = SelectedProduct.ExpirationDate});
+                }
+                catch (DbUpdateException ex)
+                {
+                    MessageBox.Show("Failed to edit the product: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+        }
+
         public DelegateCommand AddCommand { get; }
         public DelegateCommand DeleteCommand { get; }
+        public DelegateCommand EditCommand { get; }
     }
 }
