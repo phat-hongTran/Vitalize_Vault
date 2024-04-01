@@ -55,11 +55,25 @@ namespace Vitalize_Vault.ViewModel
             }
         }
 
-        private void Add(object? obj)
+        private async void Add(object? obj)
         {
-            var product = new Product() { Name = "New" };
-            var productItem = new ProductItemViewModel(product);
-            Products.Add(productItem);
+            try
+            {
+                var product = new Product() { Name = "New" };
+
+                await _dataProvider.AddAsync(product);
+                
+                var productItem = new ProductItemViewModel(product);
+                Products.Add(productItem);
+            }
+            catch (DbUpdateException ex)
+            {
+                MessageBox.Show("Failed to add the product: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private bool CanDelete(object? arg) => SelectedProduct != null ? true : false;
@@ -70,7 +84,7 @@ namespace Vitalize_Vault.ViewModel
             {
                 try
                 {
-                    var deleted = await _dataProvider.DeleteAsync(SelectedProduct.Id);
+                    await _dataProvider.DeleteAsync(SelectedProduct.Id);
                     
                     Products.Remove(SelectedProduct);
                     SelectedProduct = null;

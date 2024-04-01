@@ -12,6 +12,7 @@ namespace Vitalize_Vault.Data
     {
         Task<IEnumerable<Product>> GetAllAsync();
         Task<bool> DeleteAsync(int id);
+        Task<bool> AddAsync(Product product);
     }
     public class ProductDataProvider : IProductDataProvider
     {
@@ -22,6 +23,16 @@ namespace Vitalize_Vault.Data
             var products = db.Products;
 
             return await products.ToListAsync();
+        }
+
+        public async Task<bool> AddAsync(Product product)
+        {
+            using var db = new ProductDbContext();
+
+            await db.AddAsync(product);
+
+            int rowsAffected = await db.SaveChangesAsync();
+            return rowsAffected > 0;
         }
 
         public async Task<bool> DeleteAsync(int id)
