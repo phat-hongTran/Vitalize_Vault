@@ -5,15 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vitalize_Vault.View"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:converter="clr-namespace:Vitalize_Vault.Converter"
         mc:Ignorable="d"
-        Title="Product Management" Height="450" Width="800">
-    
+        MinHeight="200" MinWidth="400" SizeToContent="WidthAndHeight" 
+        MaxHeight="450" MaxWidth="600"
+        WindowStartupLocation="CenterScreen"
+        Title="FrigdePal"
+        Loaded="Window_Loaded">
+
+    <Window.Resources>
+        <converter:VisibilityToProductsListViewConverter x:Key="VisibilityToProductsListView"/>
+        <DataTemplate x:Key="ProductDataTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
+                <TextBlock Text="{Binding ExpirationDate, StringFormat=dd-MM-yyyy}" Margin="5 0 0 0"/>
+            </StackPanel>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
+        
         <Grid Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -24,42 +39,37 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <!-- Product Name Label and TextBox -->
             <Label VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="&#x1F4C1; "/>
-                    <TextBlock Text="Product Name:"/>
+                    <ui:SymbolIcon Symbol="Folder24"/>
+                    <ui:TextBlock Text="Product Name:" FontTypography="BodyStrong" Margin="5 0 0 0"/>
                 </StackPanel>
             </Label>
-            <ui:TextBox Grid.Column="1" Margin="5" VerticalAlignment="Center"/>
+            <ui:TextBox Grid.Column="1" Margin="5" VerticalAlignment="Center"
+                        Text="{Binding SelectedProduct.Name}"/>
 
-            <!-- Expiration Date Label and DatePicker -->
             <Label Grid.Row="1" VerticalAlignment="Center">
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="&#x1F4C5; "/>
-                    <TextBlock Text="Expiration Date:"/>
+                    <ui:SymbolIcon Symbol="CalendarLtr24"/>
+                    <ui:TextBlock Text="Expiration Date:" FontTypography="BodyStrong" Margin="5 0 0 0"/>
                 </StackPanel>
             </Label>
-            <ui:CalendarDatePicker Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" Width="Auto"/>
+            <ui:CalendarDatePicker Grid.Row="1" Grid.Column="1" Margin="5" VerticalAlignment="Center" Width="Auto"
+                                   IsTodayHighlighted="True"
+                                   Date="{Binding SelectedProduct.ExpirationDate, Mode=TwoWay}"/>
         </Grid>
 
-        <!-- Product List -->
-        <ui:ListView Grid.Row="1" Name="ProductListBox" Margin="10">
-            <!-- Bind ListBox to list of products -->
-            <!-- Each ListBoxItem should display product details -->
-            <!-- You may need to set ItemTemplate to customize how products are displayed -->
+        <ui:ListView Grid.Row="1" Margin="10"
+                     ItemsSource="{Binding Products}"
+                     SelectedItem="{Binding SelectedProduct}"
+                     ItemTemplate="{StaticResource ProductDataTemplate}"
+                     Visibility="{Binding Products, Converter={StaticResource VisibilityToProductsListView}}">
         </ui:ListView>
 
-        <!-- Button Panel -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
-            <!-- Button to Add Product -->
-            <ui:Button Content="Add Product" Margin="5"/>
-
-            <!-- Button to Edit Product -->
-            <ui:Button Content="Edit Product" Margin="5"/>
-
-            <!-- Button to Delete Product -->
-            <ui:Button Content="Delete Product" Margin="5"/>
+            <ui:Button Content="Add Product" Margin="5" Command="{Binding AddCommand}" Appearance="Primary" Icon="{ui:SymbolIcon Add24}"/>
+            <ui:Button Content="Edit Product" Margin="5" Command="{Binding EditCommand}" Appearance="Primary" Icon="{ui:SymbolIcon Edit24}"/>
+            <ui:Button Content="Delete Product" Margin="5" Command="{Binding DeleteCommand}" Appearance="Primary" Icon="{ui:SymbolIcon Delete24}"/>
         </StackPanel>
     </Grid>
 

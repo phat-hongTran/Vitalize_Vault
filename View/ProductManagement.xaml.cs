@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Vitalize_Vault.ViewModel;
 
 namespace Vitalize_Vault.View
 {
@@ -19,9 +20,18 @@ namespace Vitalize_Vault.View
     /// </summary>
     public partial class ProductManagement : Window
     {
-        public ProductManagement()
+        private readonly ProductManagementViewModel _viewModel;
+
+        public ProductManagement(ProductManagementViewModel viewModel)
         {
             InitializeComponent();
+            _viewModel = viewModel;
+            DataContext = _viewModel;
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            await _viewModel.LoadAsync();
         }
     }
 }

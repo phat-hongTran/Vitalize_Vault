@@ -11,8 +11,8 @@ using Vitalize_Vault.Model;
 namespace Vitalize_Vault.Migrations
 {
     [DbContext(typeof(ProductDbContext))]
-    [Migration("20240331030606_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240331221837_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
