@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vitalize_Vault.View"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        xmlns:converter="clr-namespace:Vitalize_Vault.Converter"
         mc:Ignorable="d"
         MinHeight="200" MinWidth="400" SizeToContent="WidthAndHeight" 
         MaxHeight="450" MaxWidth="600"
@@ -13,6 +14,7 @@
         Loaded="Window_Loaded">
 
     <Window.Resources>
+        <converter:VisibilityToProductsListViewConverter x:Key="VisibilityToProductsListView"/>
         <DataTemplate x:Key="ProductDataTemplate">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
@@ -60,7 +62,8 @@
         <ui:ListView Grid.Row="1" Margin="10"
                      ItemsSource="{Binding Products}"
                      SelectedItem="{Binding SelectedProduct}"
-                     ItemTemplate="{StaticResource ProductDataTemplate}">
+                     ItemTemplate="{StaticResource ProductDataTemplate}"
+                     Visibility="{Binding Products, Converter={StaticResource VisibilityToProductsListView}}">
         </ui:ListView>
 
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
