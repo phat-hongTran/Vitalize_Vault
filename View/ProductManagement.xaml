@@ -14,9 +14,11 @@
         Loaded="Window_Loaded">
 
     <Window.Resources>
+        <converter:ExpirationDateToBackgroundColorConverter x:Key="ExpirationDateToBackgroundColor"/>
         <converter:VisibilityToProductsListViewConverter x:Key="VisibilityToProductsListView"/>
         <DataTemplate x:Key="ProductDataTemplate">
-            <StackPanel Orientation="Horizontal">
+            <StackPanel Orientation="Horizontal"
+                        Background="{Binding ExpirationDate, Converter={StaticResource ExpirationDateToBackgroundColor}}">
                 <TextBlock Text="{Binding Name}" FontWeight="Bold"/>
                 <TextBlock Text="{Binding ExpirationDate, StringFormat=dd-MM-yyyy}" Margin="5 0 0 0"/>
             </StackPanel>
