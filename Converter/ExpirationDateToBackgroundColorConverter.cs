@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Media;
+using Vitalize_Vault.Model;
 
 namespace Vitalize_Vault.Converter
 {
@@ -17,18 +18,9 @@ namespace Vitalize_Vault.Converter
         {
             if (value is null) return Brushes.LightGray;
 
-            DateTime date = (DateTime)value;
+            int days = Product.ElapsedDays((DateTime) value);
 
-            TimeSpan difference = DateTime.Now - date;
-
-            double days = difference.TotalDays;
-
-            if (days < 0) 
-            {
-                return null;
-            };
-
-            switch ((int)days)
+            switch (days)
             {
                 case 0:
                     return Brushes.Yellow;
