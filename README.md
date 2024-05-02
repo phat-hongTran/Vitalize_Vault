@@ -1,5 +1,5 @@
 # FridgePal or Vitalize Vault
-#### Video Demo:  [<URL HERE>](https://youtu.be/9W01m-UV75w)
+#### Video Demo:  https://youtu.be/9W01m-UV75w
 #### Description:
 FridgePal or Vitalize Vault is a desktop application designed to help users track the expiration dates of products stored in their fridge. It provides an intuitive interface for managing inventory, and receiving expiration notifications.
 
